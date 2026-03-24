@@ -1,48 +1,54 @@
-## 📦 OfflineTools-MELI(em desenvolvimento)
-Hub de ferramentas logísticas para suporte operacional.
+## 📦 OfflineTools-MELI (in development)  
+Logistics tools hub for operational support.
 
-## 01. Auditoria de Rotas
+## 01. Route Auditing
 
-Ferramenta de suporte operacional desenvolvida para auxiliar no processo de auditoria/aduana e conferência de carrinhos, especialmente em situações com problemas sistêmicos, divergências na contagem ou erros no envio de contagem pelo motorista.
+Operational support tool developed to assist in the auditing/customs process and cart checking, especially in situations involving system issues, counting discrepancies, or errors when drivers submit package counts.
 
-O principal objetivo é garantir que a rota seja devidamente auditada, permitindo que o colaborador realize a conferência de forma ágil e eficiente, por meio de uma lógica de checklist inteligente.
+The main goal is to ensure that the route is properly audited, allowing the operator to perform the verification quickly and efficiently through an intelligent checklist logic.
 
-##  Funcionalidades
+## Features
 
-- **Checklist em Tempo Real:** A lista de IDs previstos aparece em tela e é marcada automaticamente conforme os bipes ocorrem.
-- **Validação Inteligente (Regex):** Filtra automaticamente bipes de etiquetas (11 dígitos), tratando códigos fora do padrão (como DANFEs de 44 dígitos) como "Inválidos".
-- **Sinalização Visual por Cores:**
-  - ⚪ **Cinza:** Item aguardando bipe.
-  - 🟢 **Verde:** Item conferido com sucesso.
-  - 🟠 **Laranja:** Item "A Mais" (ID de 11 dígitos que não estava na base).
-  - 🔴 **Vermelho:** Item "Inválido" (Etiqueta fora do padrão ou erro de leitura).
-- **Tratamento de Duplicatas:** Remove IDs repetidos na base de dados e alerta o usuário caso tente bipar o mesmo pacote duas vezes.
-- **Exportação CSV:** Gera um relatório completo contendo os IDs conferidos, faltantes e as exceções encontradas.
-- **Modo Offline:** Funciona inteiramente no navegador, sem necessidade de banco de dados ou internet após o carregamento inicial.
+- **Real-Time Checklist:** The list of expected IDs is displayed on screen and automatically checked off as scans occur.  
+- **Smart Validation (Regex):** Automatically filters label scans (11 digits), treating out-of-pattern codes (such as 44-digit DANFEs) as "Invalid".  
+- **Color-Coded Visual Feedback:**  
+  - ⚪ **Gray:** Item waiting to be scanned.  
+  - 🟢 **Green:** Item successfully verified.  
+  - 🟠 **Orange:** "Extra" item (11-digit ID not present in the base list).  
+  - 🔴 **Red:** "Invalid" item (label out of pattern or scan error).  
+- **Duplicate Handling:** Removes repeated IDs from the database and alerts the user if the same package is scanned more than once.  
+- **CSV Export:** Generates a complete report containing verified, missing, and exception items.  
+- **Offline Mode:** Runs entirely in the browser, with no need for a database or internet connection after the initial load.  
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **HTML5 & CSS3:** Interface responsiva seguindo a identidade visual "Mercado Livre".
-- **JavaScript (Vanilla):** Lógica de processamento de dados, manipulação de DOM e Regex.
-- **Git & GitHub:** Versionamento e deploy.
-
----
-
-##  Como Usar
-
-1. Acesse a ferramenta (via local ou [GitHub Pages](https://thluq.github.io/Auditoria-offline-MELI/)).
-2. Cole a lista de IDs dos pacotes que deseja auditar no campo de configuração.
-3. Clique em **"Iniciar Conferência"**.
-4. Realize os bipes. A lista será atualizada automaticamente.
-5. Ao finalizar, clique nos três pontos (⋮) e selecione **"Baixar Resultados (CSV)"** para salvar o relatório caso desejar.
+- **HTML5 & CSS3:** Responsive interface following the "Mercado Livre" visual identity.  
+- **JavaScript (Vanilla):** Data processing logic, DOM manipulation, and Regex.  
+- **Git & GitHub:** Version control and deployment.  
 
 ---
 
-## Desenvolvedor
+##  How to Use
 
-**Thiago Lucas Nunes Gonçalves**
-*Estudante de Engenharia da Computação*
+1. Access the tool (locally or via [GitHub Pages](https://thluq.github.io/Auditoria-offline-MELI/))  
+2. Paste the list of package IDs you want to audit into the configuration field  
+3. Click **"Start Audit"**  
+4. Scan the items — the list will update automatically  
+5. When finished, click the three dots (⋮) and select **"Download Results (CSV)"**  
 
 ---
 
-Esta ferramenta é um projeto independente de automação local e **não constitui um sistema ou produto oficial**. Todos os direitos sobre logotipos, marcas e os nomes "Mercado Livre" e "Mercado Envios" pertencem exclusivamente à **Ebazar.com.br. LTDA**. O uso da identidade visual serve apenas para facilitar a familiaridade operacional dos colaboradores, sem qualquer intenção de uso indevido, comercialização ou violação de propriedade intelectual.
+##  Developer
+
+**Thiago Lucas Nunes Gonçalves**  
+*Computer Engineering Student*  
+
+---
+
+##  Disclaimer
+
+This tool is an independent local automation project and **does not constitute an official system or product**.  
+
+All rights related to logos, trademarks, and the names *"Mercado Livre"* and *"Mercado Envios"* belong exclusively to **Ebazar.com.br LTDA**.  
+
+The use of this visual identity is solely intended to facilitate operational familiarity for collaborators, with no intention of misuse, commercialization, or violation of intellectual property.
