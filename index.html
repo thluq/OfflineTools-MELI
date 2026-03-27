@@ -30,12 +30,21 @@
         }
 
         .header-content {
-            display: flex; justify-content: space-between; align-items: center;
-            width: 100%; max-width: 1200px; margin: 0 auto;
-        }
+    display: flex;
+    justify-content: flex-start; /* Move o conteúdo para a esquerda */
+    align-items: center;
+    padding-left: 20px;         /* Dá um respiro da borda da tela */
+    width: 100%;
+}
 
-        .logo-container { display: flex; align-items: center; min-width: 180px; }
-        .logo-img { height: 50  px; width: auto; border: none; }
+.logo-container {
+    margin: 0;                   /* Remove margens que podem estar centralizando */
+}
+
+.logo-img {
+    height: 35px;                /* Mantém o tamanho que você já definiu */
+    display: block;
+}
 
         .kraken-main { margin-top: 100px; }
         .menu-grid {

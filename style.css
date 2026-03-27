@@ -22,12 +22,21 @@ body {
 }
 
 .header-content {
-    display: flex; justify-content: space-between; align-items: center;
-    width: 100%; max-width: 1200px; margin: 0 auto;
-    position: relative;
+    display: flex;
+    justify-content: flex-start; /* Move o conteúdo para a esquerda */
+    align-items: center;
+    padding-left: 20px;         /* Dá um respiro da borda da tela */
+    width: 100%;
 }
 
-.logo-img { height: 34px; width: auto; border: none; }
+.logo-container {
+    margin: 0;                   /* Remove margens que podem estar centralizando */
+}
+
+.logo-img {
+    height: 35px;                /* Mantém o tamanho que você já definiu */
+    display: block;
+}
 
 /* --- KEBAB MENU (HEADER) --- */
 .menu-options {
