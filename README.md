@@ -18,7 +18,13 @@ The main goal is to ensure that the route is properly audited, allowing the oper
   - 🔴 **Red:** "Invalid" item (label out of pattern or scan error).  
 - **Duplicate Handling:** Removes repeated IDs from the database and alerts the user if the same package is scanned more than once.  
 - **CSV Export:** Generates a complete report containing verified, missing, and exception items.  
-- **Offline Mode:** Runs entirely in the browser, with no need for a database or internet connection after the initial load.  
+- **Offline Mode:** Runs entirely in the browser, with no need for a database or internet connection after the initial load.
+
+
+## 2. Master Label Generator (In Development)
+
+Module for local generation of master labels, designed for situations where reprinting via *Logistics* is unavailable (file missing) or for creating *Dummy Boxes*.
+
 
 ## Technologies Used
 
@@ -30,7 +36,7 @@ The main goal is to ensure that the route is properly audited, allowing the oper
 
 ##  How to Use
 
-1. Access the tool (locally or via [GitHub Pages](https://thluq.github.io/Auditoria-offline-MELI/))  
+1. Access the tool (locally or via [GitHub Pages](https://thluq.github.io/OfflineTools-MELI/))  
 2. Paste the list of package IDs you want to audit into the configuration field  
 3. Click **"Start Audit"**  
 4. Scan the items — the list will update automatically  
@@ -40,7 +46,7 @@ The main goal is to ensure that the route is properly audited, allowing the oper
 
 ##  Developer
 
-**Thiago Lucas Nunes Gonçalves**  
+**Thiago Lucas Nunes Gonçalves**(SSP20)  
 *Computer Engineering Student*  
 
 ---
