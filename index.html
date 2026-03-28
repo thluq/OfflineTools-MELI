@@ -8,17 +8,14 @@
     <style>
         /* --- css --- */
         html, body { height: 100%; margin: 0; padding: 0; }
-
         body {
             margin: 0; padding: 0;
             background-color: #ededed; 
             font-family: "Proxima Nova", -apple-system, sans-serif;
             display: flex; flex-direction: column;
         }
-
         .content-wrapper { flex: 1 0 auto; }
         .hidden { display: none !important; }
-
         .kraken-nav-header {
             background-color: #ffe600;
             height: 54px;
@@ -28,38 +25,14 @@
             position: fixed; top: 0; width: 100%;
             z-index: 1000; box-sizing: border-box;
         }
-
-        .header-content {
-    display: flex;
-    justify-content: flex-start; /* Move o conteúdo para a esquerda */
-    align-items: center;
-    padding-left: 20px;         /* Dá um respiro da borda da tela */
-    width: 100%;
-}
-
-.logo-container {
-    margin: 0;                   /* Remove margens que podem estar centralizando */
-}
-
-.logo-img {
-    height: 35px;                /* Mantém o tamanho que você já definiu */
-    display: block;
-}
-
+        .header-content { display: flex; justify-content: flex-start; align-items: center; padding-left: 20px; width: 100%; }
+        .logo-img { height: 35px; display: block; }
         .kraken-main { margin-top: 100px; }
-        .menu-grid {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 32px; padding: 20px; max-width: 1200px; margin: 0 auto;
-        }
-
-        .menu-card {
-            text-decoration: none; display: flex; flex-direction: column;
-            align-items: center; transition: transform 0.2s; width: 180px;
-        }
+        .menu-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .menu-card { text-decoration: none; display: flex; flex-direction: column; align-items: center; transition: transform 0.2s; width: 180px; }
         .menu-card:hover { transform: translateY(-5px); }
-
         .card-circle {
-            background-color: #b9b9b957; 
+            background-color: #b9b9b937; 
             width: 100px; height: 100px;
             border-radius: 50%; display: flex; align-items: center;
             justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.12);
@@ -71,10 +44,19 @@
         /* Footer */
         .main-footer { flex-shrink: 0; width: 100%; padding: 30px 20px; background-color: #fff; border-top: 1px solid #e6e6e6; text-align: center; box-sizing: border-box; }
         .footer-legal { max-width: 800px; margin: 0 auto; color: #666; font-size: 13px; }
-        .footer-legal hr { border: 0; border-top: 1px solid #eee; margin: 15px auto; width: 50px; }
-        .disclaimer { font-size: 11px; color: #999; text-align: justify; }
+        .footer-legal hr { border: 0; border-top: 1px solid #eee; margin: 15px auto; width: 60%; }
+        .disclaimer { font-size: 11px; color: #999; text-align: justify; line-height: 1.4; }
         .embreve { font-size: 15px; color: #1023f6; text-align: justify; }
+
+        /* Social Links */
+        .dev-social-links { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 10px; }
+        .dev-social-links a { font-size: 18px; text-decoration: none; transition: transform 0.2s; }
+        .fa-github { color: #333; }
+        .fa-linkedin { color: #0077b5; }
+        .dev-social-links a:hover { transform: scale(1.2); }
+        .dev-social-links p { margin: 0; font-weight: 600; color: #333; }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="kraken-nav-header">
@@ -109,10 +91,18 @@
 
     <footer class="main-footer">
         <div class="footer-legal">
-            <p>Dev. <strong>Thiago Lucas</strong> (SSP20)</p>
+            <div class="dev-social-links">
+                <a href="https://github.com/thluq" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/thiago-lucas-76b293208/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <p>Dev. <strong>Thiago Lucas</strong> (SSP20)</p>
+            </div>
+            
             <hr>
+            
             <p class="disclaimer">
-                Esta ferramenta é um projeto independente de automação local e não constitui um sistema ou produto oficial. Todos os direitos sobre logotipos, marcas e os nomes "Mercado Livre" e "Mercado Envios" pertencem exclusivamente à Ebazar.com.br. LTDA. O uso da identidade visual serve apenas para facilitar a familiaridade operacional dos colaboradores, sem qualquer intenção de uso indevido, comercialização ou violação de propriedade intelectual.
+                Esta ferramenta é um projeto independente de automação local e não constitui um sistema ou produto oficial. 
+                Todos os direitos sobre logotipos, marcas e os nomes "Mercado Livre" e "Mercado Envios" pertencem exclusivamente à Ebazar.com.br. LTDA. 
+                O uso da identidade visual serve apenas para facilitar a familiaridade operacional dos colaboradores, sem qualquer intenção de uso indevido, comercialização ou violação de propriedade intelectual.
             </p>
         </div>
     </footer>
