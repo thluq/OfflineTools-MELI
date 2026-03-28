@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const qrElement = document.getElementById("qrcode");
     if (qrElement) {
         qrcode = new QRCode(qrElement, {
-            width: 70, height: 70, correctLevel: QRCode.CorrectLevel.H
+            width: 70, 
+            height: 70, 
+            correctLevel: QRCode.CorrectLevel.H
         });
     }
     carregarDados();
@@ -51,7 +53,7 @@ function updateLabel() {
         const dataFormatada = hoje.toLocaleDateString('pt-BR'); 
         outDateElement.innerText = `${diaSemana} ${dataFormatada}`;
     } else {
-        // Converte AAAA-MM-DD para o formato da etiqueta com dia da semana
+        // Converte AAAA-MM-DD para o formato da etiqueta (DIA DD/MM/AAAA)
         const dateParts = promiseDateValue.split('-');
         const dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
         const diaSemana = diasSemana[dateObj.getDay()];
@@ -64,7 +66,12 @@ function updateLabel() {
 
     if (id) {
         JsBarcode("#barcode", id, {
-            format: "CODE128", lineColor: "#000", width: 2.2, height: 100, displayValue: false, margin: 0
+            format: "CODE128", 
+            lineColor: "#000", 
+            width: 2.2, 
+            height: 100, 
+            displayValue: false, 
+            margin: 0
         });
 
         const startPart = id.substring(0, id.length - 5);
@@ -72,15 +79,26 @@ function updateLabel() {
         textManual.innerHTML = `${startPart}<span class="id-last-five-highlight">${lastFive}</span>`;
         textManual.style.color = "#000";
 
-        if (qrcode) { qrcode.clear(); qrcode.makeCode(id); }
+        if (qrcode) { 
+            qrcode.clear(); 
+            qrcode.makeCode(id); 
+        }
     } else {
-        // Placeholder em cinza
+        // Visualização padrão (Placeholder)
         JsBarcode("#barcode", "40000000001", {
-            format: "CODE128", lineColor: "#ccc", width: 2.2, height: 100, displayValue: false, margin: 0
+            format: "CODE128", 
+            lineColor: "#ccc", 
+            width: 2.2, 
+            height: 100, 
+            displayValue: false, 
+            margin: 0
         });
         textManual.innerHTML = `400000<span class="id-last-five-highlight">00001</span>`;
         textManual.style.color = "#ccc";
-        if (qrcode) { qrcode.clear(); qrcode.makeCode("40000000001"); }
+        if (qrcode) { 
+            qrcode.clear(); 
+            qrcode.makeCode("40000000001"); 
+        }
     }
     
     salvarDados();
