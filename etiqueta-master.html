@@ -41,7 +41,11 @@
 
             <div class="input-group">
                 <label>1. Informações Seller</label>
+<<<<<<< HEAD
                 <textarea id="in-header-free" rows="4" placeholder="Digite aqui as informações do vendedor(dica: você pode encontra-las no backoffice" oninput="updateLabel()"></textarea>
+=======
+                <textarea id="in-header-free" rows="4" placeholder="Digite aqui as informações do vendedor(você pode encontra-las no backoffice)" oninput="updateLabel()"></textarea>
+>>>>>>> 8f8f93d (style: remove scrollbar, ajusta posições de IDs e integra calendário)
             </div>
             
             <div class="input-group">
@@ -64,10 +68,10 @@
                 <input type="text" id="in-cluster" placeholder="Ex: 45" oninput="updateLabel()">
             </div>
 
-            <div class="input-group">
-                <label>6. Promessa</label>
-                <input type="text" id="in-date" placeholder="Ex: DOM 22/03/2026" oninput="updateLabel()">
-            </div>
+                <div class="input-group">
+                    <label>6. Promessa</label>
+                    <input type="date" id="in-date" onchange="updateLabel()">
+                </div>
 
             <div class="input-group">
                 <label>7. Informações Buyer</label>

@@ -87,8 +87,8 @@ html, body {
 .barcode-section {
     position: absolute;
     top: 26mm;
-    left: 8mm;
-    right: 8mm;
+    left: 10mm;
+    right: 10mm;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -104,7 +104,7 @@ html, body {
 .facility-display {
     font-size: 55pt;
     font-weight: 900;
-    text-transform: uppercase;
+    text-transform: uppercase
 }
 
 .footer-area {
@@ -261,7 +261,7 @@ textarea, input[type="text"] {
     font-family: Arial, sans-serif;
     color: black;
     position: absolute;
-    top: calc(100% - 170px);
+    top: calc(100% - 168px);
     left: 0;
     z-index: 5;
 }
