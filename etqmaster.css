@@ -31,13 +31,9 @@ html, body {
     align-items: center; 
     background-color: #e5e5e5;
     height: 100%;
-    overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    overflow: hidden;
 }
-.label-view-area::-webkit-scrollbar {
-    display: none;
-    }
+
 .label-preview {
     width: 100mm;
     height: 150mm;
@@ -72,7 +68,7 @@ html, body {
     font-size: 12px;
     line-height: 1;
     white-space: pre-wrap;
-    font-weight: 600
+    font-weight: 600;
 }
 
 .origin-badge {
@@ -83,11 +79,9 @@ html, body {
     font-size: 16px;
     font-weight: 600;
     border-radius: 4px;
-    margin-bottom: 0;
     line-height: 1.2;
     text-transform: uppercase;
     align-self: flex-start; 
-    margin-left: 0;
 }
 
 .barcode-section {
@@ -110,7 +104,7 @@ html, body {
 .facility-display {
     font-size: 55pt;
     font-weight: 900;
-    text-transform: uppercase
+    text-transform: uppercase;
 }
 
 .footer-area {
@@ -133,7 +127,7 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 5px;   
-    font-weight: 600 
+    font-weight: 600;
 }
 
 .qr-zone {
@@ -215,39 +209,35 @@ textarea, input[type="text"] {
 
 @media print {
     body, html { 
-        overflow: visible; 
+        overflow: visible !important; 
         background: white; 
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
-    .kraken-nav-header, .input-panel, .footer-separator { 
+    .kraken-nav-header, .input-panel { 
         display: none !important; 
     }
 
     .label-view-area { 
         background: none; 
-        display: block; 
+        display: block !important; 
         padding: 0; 
         overflow: visible !important;
-        display: block !important;
     }
 
     .label-preview {
         position: relative;
         margin: 0;
         box-shadow: none;
-        border: 1px solid black !important;
-        overflow: visible !important;
+        border: 2px solid black !important;
+        overflow: hidden !important; 
         display: block !important;
     }
 
-    ::-webkit-scrollbar {
-        display: none !important; }
-    
     .footer-separator {
         display: block !important;
-        border-top: 0.5px solid black !important;
+        border-top: 1pt solid black !important;
     }
 }
 
@@ -256,7 +246,7 @@ textarea, input[type="text"] {
     margin-top: 2mm;
     font-weight: 600;
     text-align: center;
-    text-transform: uppercase
+    text-transform: uppercase;
 }
 
 .cluster-number-bold {
