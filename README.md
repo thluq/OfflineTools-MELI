@@ -57,3 +57,4 @@ This tool is an independent local automation project and **does not constitute a
 All rights related to logos, trademarks, and the names *"Mercado Livre"* and *"Mercado Envios"* belong exclusively to **Ebazar.com.br LTDA**.  
 
 The use of this visual identity is solely intended to facilitate operational familiarity for collaborators, with no intention of misuse, commercialization, or violation of intellectual property.
+**This tool does not collect any data.** Feel free to review the code!
