@@ -37,11 +37,7 @@ Module for local generation of package labels, designed for situations where rep
 
 ##  How to Use
 
-1. Access the tool (locally or via [GitHub Pages](https://thluq.github.io/OfflineTools-MELI/))  
-2. Paste the list of package IDs you want to audit into the configuration field  
-3. Click **"Start Audit"**  
-4. Scan the items — the list will update automatically  
-5. When finished, click the three dots (⋮) and select **"Download Results (CSV)"**  
+Access the tool (locally or via [GitHub Pages](https://thluq.github.io/OfflineTools-MELI/))  
 
 ---
 
