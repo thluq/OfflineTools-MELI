@@ -118,6 +118,17 @@ html, body {
     margin-top: 3mm;
 }
 
+.barcode-text-container {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: black;
+    position: relative;
+    margin-top: -5px; /* Ajuste para colar no código de barras */
+    z-index: 5;
+}
+
 .facility-display {
     font-size: 55pt;
     font-weight: 600;
@@ -226,8 +237,53 @@ textarea, input[type="text"], input[type="date"] {
     letter-spacing: 1px;
 }
 
-@media print {
+.cluster-row {
+    font-size: 11pt;
+    margin-top: 2mm;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
 
+.cluster-number-bold {
+    font-weight: 900;
+    font-size: 15pt;
+}
+
+.id-last-five-highlight {
+    font-weight: 800;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-separator {
+    position: absolute;
+    bottom: calc(4mm + 27mm + 5px);
+    left: 4mm;
+    right: 4mm;
+    height: 1px;
+    background-color: black;
+    z-index: 1;
+}
+
+/* --- IDENTIFICAÇÃO DE ORIGEM (QUASE INVISÍVEL) --- */
+.origin-tag {
+    position: absolute;
+    top: 2px;          
+    right: 5px;         
+    font-size: 7px;    
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.07); 
+    font-family: "Proxima Nova", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 100;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* --- REGRAS DE IMPRESSÃO --- */
+@media print {
     @page {
         margin: 0;
         size: 100mm 150mm;
@@ -267,11 +323,9 @@ textarea, input[type="text"], input[type="date"] {
         height: 150mm;
     }
 
-  
     .origin-tag {
         display: block !important;
         color: rgba(0, 0, 0, 0.07) !important;
-        font-size: 7px !important;
         -webkit-print-color-adjust: exact !important;
     }
 
@@ -286,57 +340,3 @@ textarea, input[type="text"], input[type="date"] {
         -webkit-print-color-adjust: exact !important;
     }
 }
-
-.cluster-row {
-    font-size: 11pt;
-    margin-top: 2mm;
-    font-weight: 600;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.cluster-number-bold {
-    font-weight: 900;
-    font-size: 15pt;
-}
-
-.barcode-text-container {
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-    color: black;
-    position: absolute;
-    top: calc(100% - 169px);
-    left: 0;
-    z-index: 5;
-}
-
-.id-last-five-highlight {
-    font-weight: 800;
-    font-size: 18px;
-    font-family: Arial, sans-serif;
-}
-
-.footer-separator {
-    position: absolute;
-    bottom: calc(4mm + 27mm + 5px);
-    left: 4mm;
-    right: 4mm;
-    height: 1px;
-    background-color: black;
-    z-index: 1;
-}
-.origin-tag {
-    position: absolute;
-    top: 2px;          
-    right: 5px;         
-    font-size: 7px;    
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.07); 
-    font-family: "Proxima Nova", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    z-index: 10;
-    pointer-events: none;
-    white-space: nowrap;
