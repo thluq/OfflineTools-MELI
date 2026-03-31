@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
             correctLevel: QRCode.CorrectLevel.H
         });
     }
-    carregarDados();
+    // Inicializa a etiqueta com os placeholders
     updateLabel();
 });
 
@@ -21,7 +21,7 @@ function updateLabel() {
     const fsp = document.getElementById('in-fsp').value.trim();
     const id = document.getElementById('in-id').value.trim();
     const clusterNum = document.getElementById('in-cluster').value.trim();
-    const promiseDateValue = document.getElementById('in-date').value; // Valor do input type="date"
+    const promiseDateValue = document.getElementById('in-date').value; 
     
     const addressType = document.querySelector('input[name="address-type"]:checked')?.value || "R";
 
@@ -42,18 +42,16 @@ function updateLabel() {
     document.getElementById('out-cluster-combined').innerHTML = 
         `${valFSP} > ${valSSP} > <span class="cluster-number-bold">${valCluster}</span>`;
 
-    // --- LÓGICA DE DATA COM CALENDÁRIO ---
+    // --- LÓGICA DE DATA ---
     const outDateElement = document.getElementById('out-date');
     const diasSemana = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
 
     if (!promiseDateValue) {
-        // Fallback para data de hoje se o calendário estiver vazio
         const hoje = new Date();
         const diaSemana = diasSemana[hoje.getDay()];
         const dataFormatada = hoje.toLocaleDateString('pt-BR'); 
         outDateElement.innerText = `${diaSemana} ${dataFormatada}`;
     } else {
-        // Converte AAAA-MM-DD para o formato da etiqueta (DIA DD/MM/AAAA)
         const dateParts = promiseDateValue.split('-');
         const dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
         const diaSemana = diasSemana[dateObj.getDay()];
@@ -69,7 +67,7 @@ function updateLabel() {
             format: "CODE128", 
             lineColor: "#000", 
             width: 2.2, 
-            height: 100, 
+            height: 85, 
             displayValue: false, 
             margin: 0
         });
@@ -84,12 +82,11 @@ function updateLabel() {
             qrcode.makeCode(id); 
         }
     } else {
-        // Visualização padrão (Placeholder)
         JsBarcode("#barcode", "40000000001", {
             format: "CODE128", 
             lineColor: "#ccc", 
             width: 2.2, 
-            height: 100, 
+            height: 85, 
             displayValue: false, 
             margin: 0
         });
@@ -100,30 +97,5 @@ function updateLabel() {
             qrcode.makeCode("40000000001"); 
         }
     }
-    
-    salvarDados();
-}
-
-function salvarDados() {
-    const fields = ['in-header-free', 'in-recipient-free', 'in-ssp', 'in-fsp', 'in-cluster', 'in-date', 'in-id'];
-    fields.forEach(fId => {
-        const el = document.getElementById(fId);
-        if (el) localStorage.setItem('etq_' + fId, el.value);
-    });
-    const type = document.querySelector('input[name="address-type"]:checked')?.value;
-    if (type) localStorage.setItem('etq_type', type);
-}
-
-function carregarDados() {
-    const fields = ['in-header-free', 'in-recipient-free', 'in-ssp', 'in-fsp', 'in-cluster', 'in-date', 'in-id'];
-    fields.forEach(fId => {
-        const val = localStorage.getItem('etq_' + fId);
-        if (val !== null) {
-            const el = document.getElementById(fId);
-            if (el) el.value = val;
-        }
-    });
-    const savedType = localStorage.getItem('etq_type') || "R";
-    const rb = document.querySelector(`input[name="address-type"][value="${savedType}"]`);
-    if (rb) rb.checked = true;
+    // Removido qualquer salvamento automático
 }
