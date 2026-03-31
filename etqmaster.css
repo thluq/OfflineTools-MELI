@@ -282,6 +282,7 @@ textarea, input[type="text"], input[type="date"] {
 }
 
 /* --- REGRAS DE IMPRESSÃO --- */
+/* --- REGRAS DE IMPRESSÃO DEFINITIVAS (ESCALA 100%) --- */
 @media print {
     @page {
         margin: 0;
@@ -293,18 +294,19 @@ textarea, input[type="text"], input[type="date"] {
         padding: 0 !important;
         height: 150mm !important;
         width: 100mm !important;
-        overflow: hidden !important; /* Corta qualquer tentativa de criar página 2 */
+        overflow: hidden !important; 
         background: white; 
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
 
-    /* Esconde a interface do site */
+    /* Esconde a interface do painel de input */
     .kraken-nav-header, .input-panel { 
         display: none !important; 
     }
 
     .label-view-area { 
+        background: none; 
         display: block !important; 
         padding: 0 !important; 
         margin: 0 !important;
@@ -320,16 +322,24 @@ textarea, input[type="text"], input[type="date"] {
         top: 0;           
         left: 0;
         margin: 0 !important;
-        padding: 5mm !important; /* Reduzi um pouco para o conteúdo respirar melhor */
-        border: none !important; /* Remove a borda para não ganhar milímetros extras */
+        padding: 5mm !important; /* Padding reduzido para ganhar espaço interno */
+        border: none !important;  /* Remove a borda para não somar na altura total */
         box-shadow: none !important;
         width: 100mm !important;
         height: 150mm !important;
+        box-sizing: border-box !important; /* Garante que padding não aumente os 150mm */
         page-break-after: avoid;
         page-break-inside: avoid;
         display: flex !important;
     }
 
+    /* Ajuste de altura do barcode para liberar espaço para o rodapé */
+    #barcode {
+        height: 85px !important; 
+        margin-top: 2mm !important;
+    }
+
+    /* Garante que o identificador do site apareça */
     .origin-tag {
         display: block !important;
         top: 2mm !important;
@@ -338,9 +348,10 @@ textarea, input[type="text"], input[type="date"] {
         -webkit-print-color-adjust: exact !important;
     }
 
-    /* Garante que o rodapé não desça demais */
+    /* Trava o rodapé na base da primeira página */
     .footer-area {
-        bottom: 2mm !important; 
+        bottom: 3mm !important; 
+        height: 32mm !important;
     }
 
     .footer-separator {
