@@ -272,7 +272,7 @@ textarea, input[type="text"], input[type="date"] {
     right: 5px;         
     font-size: 7px;    
     font-weight: 600;
-    color: rgba(0, 0, 0, 0.3); 
+    color: rgba(0, 0, 0, 0.6); 
     font-family: "Proxima Nova", sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -324,7 +324,7 @@ textarea, input[type="text"], input[type="date"] {
 
     .origin-tag {
         display: block !important;
-        color: rgba(0, 0, 0, 0.3) !important;
+        color: rgba(0, 0, 0, 0.6) !important;
         -webkit-print-color-adjust: exact !important;
     }
 
