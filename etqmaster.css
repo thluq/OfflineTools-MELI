@@ -320,6 +320,8 @@ textarea, input[type="text"], input[type="date"] {
         display: block !important;
         width: 100mm;    
         height: 150mm;
+        page-break-after: avoid;
+        page-break-inside: avoid;
     }
 
     .origin-tag {
