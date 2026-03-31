@@ -291,43 +291,56 @@ textarea, input[type="text"], input[type="date"] {
     body, html { 
         margin: 0 !important;
         padding: 0 !important;
-        overflow: visible !important; 
+        height: 150mm !important;
+        width: 100mm !important;
+        overflow: hidden !important; /* Corta qualquer tentativa de criar página 2 */
         background: white; 
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
 
+    /* Esconde a interface do site */
     .kraken-nav-header, .input-panel { 
         display: none !important; 
     }
 
     .label-view-area { 
-        background: none; 
         display: block !important; 
-        padding: 0; 
-        margin: 0;
-        overflow: visible !important;
+        padding: 0 !important; 
+        margin: 0 !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100mm;
+        height: 150mm;
     }
 
     .label-preview {
-        position: relative;
+        position: absolute;
         top: 0;           
         left: 0;
-        margin: 0 auto;   
-        box-shadow: none;
-        border: 2px solid black !important;
-        overflow: hidden !important; 
-        display: block !important;
-        width: 100mm;    
-        height: 150mm;
+        margin: 0 !important;
+        padding: 5mm !important; /* Reduzi um pouco para o conteúdo respirar melhor */
+        border: none !important; /* Remove a borda para não ganhar milímetros extras */
+        box-shadow: none !important;
+        width: 100mm !important;
+        height: 150mm !important;
         page-break-after: avoid;
         page-break-inside: avoid;
+        display: flex !important;
     }
 
     .origin-tag {
         display: block !important;
+        top: 2mm !important;
+        right: 5mm !important;
         color: rgba(0, 0, 0, 0.6) !important;
         -webkit-print-color-adjust: exact !important;
+    }
+
+    /* Garante que o rodapé não desça demais */
+    .footer-area {
+        bottom: 2mm !important; 
     }
 
     .footer-separator {
