@@ -9,12 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
             correctLevel: QRCode.CorrectLevel.H
         });
     }
-    // Inicializa a etiqueta com os placeholders
+    
     updateLabel();
 });
 
 function updateLabel() {
-    // Captura de Inputs
     const headerText = document.getElementById('in-header-free').value;
     const recipientText = document.getElementById('in-recipient-free').value;
     const ssp = document.getElementById('in-ssp').value.trim();
@@ -25,24 +24,21 @@ function updateLabel() {
     
     const addressType = document.querySelector('input[name="address-type"]:checked')?.value || "R";
 
-    // --- PLACEHOLDERS VISUAIS ---
-    const placeholderRemetente = "MELI MELI - #100000010\nAv. ------- ------ 1234 Empresarial\nCajamar BR-SP 00000001\nVenda: -------";
-    const placeholderDestinatario = "-----------------\nEndereço: Rua ------ 666, Jardim ------ ------ \nCEP: 1800-000\n Cidade de Destino: -------, -------\n Complemento: Apto ---";
+    const placeholderRemetente = "";
+    const placeholderDestinatario = "";
 
     document.getElementById('out-header-free').innerText = headerText || placeholderRemetente;
     document.getElementById('out-recipient-free').innerText = recipientText || placeholderDestinatario;
-    document.getElementById('out-ssp').innerText = ssp || "SSP20";
-    document.getElementById('out-fsp').innerText = fsp || "FSP04";
+    document.getElementById('out-ssp').innerText = ssp || "SSP00";
+    document.getElementById('out-fsp').innerText = fsp || "FSP00";
     document.getElementById('out-address-type').innerText = addressType;
 
-    // Cluster Combinado
-    const valFSP = fsp || "FSP04";
-    const valSSP = ssp || "SSP20";
+    const valFSP = fsp || "FSP00";
+    const valSSP = ssp || "SSP00";
     const valCluster = clusterNum || "00";
     document.getElementById('out-cluster-combined').innerHTML = 
         `${valFSP} > ${valSSP} > <span class="cluster-number-bold">${valCluster}</span>`;
 
-    // --- LÓGICA DE DATA ---
     const outDateElement = document.getElementById('out-date');
     const diasSemana = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
 
@@ -59,7 +55,6 @@ function updateLabel() {
         outDateElement.innerText = `${diaSemana} ${dataFormatada}`;
     }
 
-    // Destaque nos últimos 5 dígitos do Barcode ID
     const textManual = document.getElementById('barcode-text-manual');
 
     if (id) {
@@ -90,14 +85,31 @@ function updateLabel() {
             displayValue: false, 
             margin: 0
         });
+
         textManual.innerHTML = `400000<span class="id-last-five-highlight">00001</span>`;
         textManual.style.color = "#ccc";
+
         if (qrcode) { 
             qrcode.clear(); 
             qrcode.makeCode("40000000001"); 
         }
     }
-    // Removido qualquer salvamento automático
 }
 
-console.log("%cPrivacy Note: This tool does not collect any data. Feel free to review the code!", "color: #3483fa; font-weight: bold;");
+function unlockFields() {
+    const senhaCorreta = "3831213";
+    const tentativa = prompt("Digite a senha de acesso para habilitar campos restritos:");
+
+    if (tentativa === senhaCorreta) {
+        const areaBloqueada = document.getElementById('locked-fields');
+        areaBloqueada.style.opacity = "1";
+        areaBloqueada.style.pointer_events = "auto";
+        areaBloqueada.style.transition = "0.3s";
+        
+        document.getElementById('unlock-btn').style.display = 'none';
+        
+        alert("Campos habilitados com sucesso!");
+    } else {
+        alert("Senha incorreta. Acesso negado.");
+    }
+}

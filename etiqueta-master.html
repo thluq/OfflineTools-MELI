@@ -26,10 +26,13 @@
 
     <div class="master-container">
         <div class="input-panel">
-            <h2>Gerador de Etiqueta</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin: 0;">Gerador de Etiqueta</h2>
+                <button id="unlock-btn" onclick="unlockFields()" title="Habilitar campos restritos" style="background: none; border: none; cursor: pointer; font-size: 24px; color: #3483fa; padding: 0 10px; line-height: 1;">⋮</button>
+            </div>
 
             <div class="input-group">
-                <label>Tipo de Endereço(Residencial ou Comercial)</label>
+                <label>Tipo de Endereço (Residencial ou Comercial)</label>
                 <div class="address-type-selector">
                     <input type="radio" id="type-residential" name="address-type" value="R" checked onchange="updateLabel()">
                     <label for="type-residential" class="selector-btn residencial">R</label>
@@ -39,11 +42,18 @@
                 </div>
             </div>
 
-            <div class="input-group">
-                <label>1. Informações Seller</label>
-                <textarea id="in-header-free" rows="4" placeholder="Digite aqui as informações do vendedor(você pode encontra-las no backoffice)" oninput="updateLabel()"></textarea>
+            <div id="locked-fields-container" class="locked-state">
+                <div class="input-group">
+                    <label>1. Informações Seller</label>
+                    <textarea id="in-header-free" rows="4" placeholder="Bloqueado temporariamente." oninput="updateLabel()"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>7. Informações Buyer</label>
+                    <textarea id="in-recipient-free" rows="4" placeholder="Bloqueado temporariamente." oninput="updateLabel()"></textarea>
+                </div>
             </div>
-            
+
             <div class="input-group">
                 <label>2. Facility Destino</label>
                 <input type="text" id="in-ssp" placeholder="Ex: SSP20" oninput="updateLabel()">
@@ -64,18 +74,13 @@
                 <input type="text" id="in-cluster" placeholder="Ex: 45" oninput="updateLabel()">
             </div>
 
-                <div class="input-group">
-                    <label>6. Promessa</label>
-                    <input type="date" id="in-date" onchange="updateLabel()">
-                </div>
-
             <div class="input-group">
-                <label>7. Informações Buyer</label>
-                <textarea id="in-recipient-free" rows="4" placeholder="Cole ou digite aqui as informações do comprador..." oninput="updateLabel()"></textarea>
+                <label>6. Promessa</label>
+                <input type="date" id="in-date" onchange="updateLabel()">
             </div>
 
             <div class="button-group">
-                <button class="btn-primary" onclick="window.print()" style="width: 100%; padding: 18px; font-weight: bold; font-size: 16px; cursor: pointer; border-radius: 8px; background-color: #3483fa; color: white; border: none;">
+                <button class="btn-primary" onclick="window.print()" style="width: 100%; padding: 18px; font-weight: bold; font-size: 16px; cursor: pointer; border-radius: 8px; background-color: #3483fa; color: white; border: none; margin-top: 10px;">
                     IMPRIMIR ETIQUETA
                 </button>
             </div>
@@ -84,7 +89,8 @@
 
         <div class="label-view-area">
             <div class="label-preview" id="printable-label">
-                <div class="origin-tag">Etiqueta Gerada manualmente</div>                
+                <div class="origin-tag">Etiqueta Gerada manualmente</div> 
+                
                 <div class="header-label-container">
                     <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.5/mercadolibre/favicon.svg" class="mini-logo-hand" alt="Meli Icon">
                     <div class="label-free-zone" id="out-header-free"></div>
@@ -104,7 +110,9 @@
 
                     <div class="delivery-date-row" id="out-date">--- 00/00/0000</div>
                 </div>
-                    <div class="footer-separator"></div>
+                
+                <div class="footer-separator"></div>
+                
                 <div class="footer-area">
                     <div class="recipient-zone" id="out-recipient-free"></div>
                     <div class="qr-zone">

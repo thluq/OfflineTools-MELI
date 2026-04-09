@@ -125,7 +125,7 @@ html, body {
     font-family: Arial, sans-serif;
     color: black;
     position: relative;
-    margin-top: -5px; /* Ajuste para colar no código de barras */
+    margin-top: -5px;
     z-index: 5;
 }
 
@@ -281,7 +281,6 @@ textarea, input[type="text"], input[type="date"] {
     white-space: nowrap;
 }
 
-/* --- REGRAS DE IMPRESSÃO --- */
 @media print {
     @page {
         margin: 0;
@@ -299,7 +298,6 @@ textarea, input[type="text"], input[type="date"] {
         print-color-adjust: exact !important;
     }
 
-    /* Esconde a interface do painel de input */
     .kraken-nav-header, .input-panel { 
         display: none !important; 
     }
@@ -321,24 +319,22 @@ textarea, input[type="text"], input[type="date"] {
         top: 0;           
         left: 0;
         margin: 0 !important;
-        padding: 5mm !important; /* Padding reduzido para ganhar espaço interno */
-        border: none !important;  /* Remove a borda para não somar na altura total */
+        padding: 5mm !important;
+        border: none !important;
         box-shadow: none !important;
         width: 100mm !important;
         height: 150mm !important;
-        box-sizing: border-box !important; /* Garante que padding não aumente os 150mm */
+        box-sizing: border-box !important;
         page-break-after: avoid;
         page-break-inside: avoid;
         display: flex !important;
     }
 
-    /* Ajuste de altura do barcode para liberar espaço para o rodapé */
     #barcode {
         height: 85px !important; 
         margin-top: 2mm !important;
     }
 
-    /* Garante que o identificador do site apareça */
     .origin-tag {
         display: block !important;
         top: 2mm !important;
@@ -347,7 +343,6 @@ textarea, input[type="text"], input[type="date"] {
         -webkit-print-color-adjust: exact !important;
     }
 
-    /* Trava o rodapé na base da primeira página */
     .footer-area {
         bottom: 3mm !important; 
         height: 32mm !important;

@@ -158,3 +158,16 @@ textarea { width: 100%; min-height: 200px; border: 1px solid #ddd; border-radius
         .fa-linkedin { color: #0077b5; }
         .dev-social-links a:hover { transform: scale(1.2); }
         .dev-social-links p { margin: 0; font-weight: 600; color: #333; }
+
+#locked-fields {
+    pointer-events: none; /* Impede cliques e foco nos inputs */
+    user-select: none;    /* Impede selecionar o texto */
+    transition: all 0.3s ease;
+}
+
+/* Classe que será aplicada via JS (ou alterada via style direto como fiz acima) */
+.unlocked {
+    pointer-events: auto !important;
+    user-select: auto !important;
+    opacity: 1 !important;
+}
