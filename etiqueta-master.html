@@ -26,9 +26,17 @@
 
     <div class="master-container">
         <div class="input-panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <div class="input-panel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative;">
                 <h2 style="margin: 0;">Gerador de Etiqueta</h2>
-                <button id="unlock-btn" onclick="unlockFields()" title="Habilitar campos restritos" style="background: none; border: none; cursor: pointer; font-size: 24px; color: #3483fa; padding: 0 10px; line-height: 1;">⋮</button>
+                
+                <div class="options-menu-container" style="position: relative;">
+                    <button id="unlock-btn" onclick="toggleOptionsMenu()" title="Opções" style="background: none; border: none; cursor: pointer; font-size: 24px; color: #3483fa; padding: 0 10px; line-height: 1;">⋮</button>
+                    
+                    <div id="options-menu" class="options-menu">
+                        <button onclick="promptForDeveloperMode()">Habilitar Modo Desenvolvedor</button>
+                        <button onclick="window.location.href='semid.html'">Ir para SEM ID</button>
+                    </div>
+                </div>
             </div>
 
             <div class="input-group">
@@ -42,15 +50,15 @@
                 </div>
             </div>
 
-            <div id="locked-fields-container" class="locked-state">
+            <div id="locked-fields" class="locked-state">
                 <div class="input-group">
                     <label>1. Informações Seller</label>
-                    <textarea id="in-header-free" rows="4" placeholder="Bloqueado temporariamente." oninput="updateLabel()"></textarea>
+                    <textarea id="in-header-free" rows="4" placeholder="Insira os dados do Seller..." oninput="updateLabel()"></textarea>
                 </div>
 
                 <div class="input-group">
                     <label>7. Informações Buyer</label>
-                    <textarea id="in-recipient-free" rows="4" placeholder="Bloqueado temporariamente." oninput="updateLabel()"></textarea>
+                    <textarea id="in-recipient-free" rows="4" placeholder="Insira os dados do Buyer..." oninput="updateLabel()"></textarea>
                 </div>
             </div>
 

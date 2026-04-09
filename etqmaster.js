@@ -13,6 +13,42 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLabel();
 });
 
+function toggleOptionsMenu() {
+    const menu = document.getElementById('options-menu');
+    menu.classList.toggle('show');
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('#unlock-btn')) {
+        const dropdowns = document.getElementsByClassName("options-menu");
+        for (let i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+function promptForDeveloperMode() {
+    const senhaCorreta = "3831213";
+    const tentativa = prompt("Digite a senha de acesso para habilitar o Modo Desenvolvedor:");
+
+    if (tentativa === senhaCorreta) {
+        const areaBloqueada = document.getElementById('locked-fields');
+        areaBloqueada.style.display = "block";
+        
+        setTimeout(() => {
+            areaBloqueada.style.opacity = "1";
+            areaBloqueada.style.transition = "opacity 0.3s";
+        }, 10);
+        
+        alert("Modo Desenvolvedor habilitado! Campos liberados.");
+    } else {
+        alert("Senha incorreta. Acesso negado.");
+    }
+}
+
 function updateLabel() {
     const headerText = document.getElementById('in-header-free').value;
     const recipientText = document.getElementById('in-recipient-free').value;
@@ -93,23 +129,5 @@ function updateLabel() {
             qrcode.clear(); 
             qrcode.makeCode("40000000001"); 
         }
-    }
-}
-
-function unlockFields() {
-    const senhaCorreta = "3831213";
-    const tentativa = prompt("Digite a senha de acesso para habilitar campos restritos:");
-
-    if (tentativa === senhaCorreta) {
-        const areaBloqueada = document.getElementById('locked-fields');
-        areaBloqueada.style.opacity = "1";
-        areaBloqueada.style.pointer_events = "auto";
-        areaBloqueada.style.transition = "0.3s";
-        
-        document.getElementById('unlock-btn').style.display = 'none';
-        
-        alert("Campos habilitados com sucesso!");
-    } else {
-        alert("Senha incorreta. Acesso negado.");
     }
 }
