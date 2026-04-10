@@ -21,10 +21,12 @@ async function gerarEtiquetas() {
         label.innerHTML = `
             <div style="width: 100%; text-align: center; margin-top: 5mm;">
                 <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.5/mercadolibre/logo__large_plus.png" 
-                     style="height:32px; display: block; margin: 0 auto;">
+                     style="height:44px; display: block; margin: 0 auto;">
             </div>
             
-            <div class="label-header-title" style="margin-top: 6mm;">SEM ID ${facility}</div>
+           <div class="label-header-title" style="margin-top: 4mm; font-size: 29px; font-weight: bold;"> 
+        PACOTE SEM ID ${facility}
+    </div>
             
             <div style="margin: 10mm 0; width: 100%; display: flex; justify-content: center;">
                 <svg id="barcode-${i}" class="barcode-canvas"></svg>

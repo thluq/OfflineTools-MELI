@@ -1,3 +1,30 @@
+
+#bulky-no:checked + label {
+    border-color: #3483fa;
+    background: #e3f2fd;
+    color: #3483fa;
+}
+
+#bulky-yes:checked + label {
+    border-color: #ff9800; 
+    background: #fff3e0;
+    color: #e65100;
+}
+
+
+#watermark-on:checked + label {
+    border-color: #3483fa;
+    background: #e3f2fd;
+    color: #3483fa;
+}
+
+#watermark-off:checked + label {
+    border-color: #e02121; 
+    background: #ffebee;
+    color: #c62828;
+}
+
+
 html, body {
     height: 100%;
     margin: 0;
@@ -112,10 +139,19 @@ html, body {
     align-items: center;
 }
 
-#barcode {
+.barcode-flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    gap: 10px;
+    margin-top: 2mm;
+}
+
+#barcode {
+    width: auto !important;
+    max-width: 80%;
     height: 100px;
-    margin-top: 3mm;
 }
 
 .barcode-text-container {
@@ -321,6 +357,21 @@ textarea, input[type="text"], input[type="date"] {
     color: #3483fa;
 }
 
+.bulky-icon-hidden {
+    display: none !important;
+}
+
+#bulky-icon-container {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.bulky-icon-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
 @media print {
     @page {
         margin: 0;
@@ -370,13 +421,18 @@ textarea, input[type="text"], input[type="date"] {
         display: flex !important;
     }
 
+    .barcode-flex-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
     #barcode {
         height: 85px !important; 
         margin-top: 2mm !important;
     }
 
     .origin-tag {
-        display: block !important;
         top: 2mm !important;
         right: 5mm !important;
         color: rgba(0, 0, 0, 0.6) !important;
@@ -397,5 +453,15 @@ textarea, input[type="text"], input[type="date"] {
         background-color: black !important;
         color: white !important;
         -webkit-print-color-adjust: exact !important;
+    }
+
+    #bulky-icon-container {
+        display: flex !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    #bulky-icon-container.bulky-icon-hidden {
+        display: none !important;
     }
 }

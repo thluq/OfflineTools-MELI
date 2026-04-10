@@ -50,6 +50,16 @@
                 </div>
             </div>
 
+            <div class="input-group">
+                <label>É um pacote volumoso?</label>
+                <div class="bulky-selector address-type-selector"> 
+                    <input type="radio" id="bulky-no" name="bulky-type" value="N" checked onchange="updateLabel()">
+                    <label for="bulky-no" class="selector-btn residencial">Não</label>           
+                    <input type="radio" id="bulky-yes" name="bulky-type" value="S" onchange="updateLabel()">
+                    <label for="bulky-yes" class="selector-btn comercial">Sim</label>
+                </div>
+            </div>
+
             <div id="locked-fields" class="locked-state">
                 <div class="input-group">
                     <label>1. Informações Seller</label>
@@ -60,6 +70,16 @@
                     <label>7. Informações Buyer</label>
                     <textarea id="in-recipient-free" rows="4" placeholder="Insira os dados do Buyer..." oninput="updateLabel()"></textarea>
                 </div>
+                <div class="input-group">
+                      <label>Remover Marca d'água?</label>
+                         <div class="address-type-selector">
+                         <input type="radio" id="watermark-on" name="watermark-toggle" value="on" checked onchange="updateLabel()">
+                        <label for="watermark-on" class="selector-btn residencial">Manter</label>
+
+                          <input type="radio" id="watermark-off" name="watermark-toggle" value="off" onchange="updateLabel()">
+                      <label for="watermark-off" class="selector-btn comercial">Remover</label>
+                  </div>
+    </div>
             </div>
 
             <div class="input-group">
@@ -74,7 +94,7 @@
             
             <div class="input-group">
                 <label style="color: #3483fa; font-weight: bold;">4. ID do Pacote</label>
-                <input type="text" id="in-id" placeholder="Ex: 40000000001" oninput="updateLabel()">
+                <input type="text" id="in-id" placeholder="Ex: 41234567890" oninput="updateLabel()">
             </div>
 
             <div class="input-group">
@@ -108,7 +128,13 @@
                 <div class="barcode-section">
                     <div class="origin-badge" id="out-fsp">FSP--</div>
                     
-                    <svg id="barcode"></svg>
+                    <div class="barcode-flex-container" style="display: flex; align-items: center; justify-content: center; width: 100%; gap: 10px;">
+                        <div id="bulky-icon-container" class="bulky-icon-hidden">
+                            <img src="icons/bulkyicon.png" alt="Volumoso" class="bulky-icon-img">
+                        </div>
+                        
+                        <svg id="barcode"></svg>
+                    </div>
                     
                     <div class="barcode-text-container" id="barcode-text-manual"></div>
                     
@@ -128,7 +154,6 @@
                         <div class="address-type-indicator" id="out-address-type">R</div>
                     </div>
                 </div>
-
             </div> 
         </div> 
     </div> 

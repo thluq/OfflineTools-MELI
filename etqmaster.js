@@ -36,7 +36,9 @@ function promptForDeveloperMode() {
 
     if (tentativa === senhaCorreta) {
         const areaBloqueada = document.getElementById('locked-fields');
+        
         areaBloqueada.style.display = "block";
+        areaBloqueada.style.pointerEvents = "auto";
         
         setTimeout(() => {
             areaBloqueada.style.opacity = "1";
@@ -50,28 +52,51 @@ function promptForDeveloperMode() {
 }
 
 function updateLabel() {
-    const headerText = document.getElementById('in-header-free').value;
-    const recipientText = document.getElementById('in-recipient-free').value;
-    const ssp = document.getElementById('in-ssp').value.trim();
-    const fsp = document.getElementById('in-fsp').value.trim();
-    const id = document.getElementById('in-id').value.trim();
-    const clusterNum = document.getElementById('in-cluster').value.trim();
-    const promiseDateValue = document.getElementById('in-date').value; 
+    const inHeader = document.getElementById('in-header-free');
+    const inRecipient = document.getElementById('in-recipient-free');
+    const inSSP = document.getElementById('in-ssp');
+    const inFSP = document.getElementById('in-fsp');
+    const inID = document.getElementById('in-id');
+    const inCluster = document.getElementById('in-cluster');
+    const inDate = document.getElementById('in-date');
+
+    const headerText = inHeader ? inHeader.value : "";
+    const recipientText = inRecipient ? inRecipient.value : "";
+    const ssp = inSSP ? inSSP.value.trim() : "";
+    const fsp = inFSP ? inFSP.value.trim() : "";
+    const id = inID ? inID.value.trim() : "";
+    const clusterNum = inCluster ? inCluster.value.trim() : "";
+    const promiseDateValue = inDate ? inDate.value : ""; 
     
     const addressType = document.querySelector('input[name="address-type"]:checked')?.value || "R";
+    
 
-    const placeholderRemetente = "";
-    const placeholderDestinatario = "";
+    const bulkyType = document.querySelector('input[name="bulky-type"]:checked')?.value || "N";
+    const bulkyContainer = document.getElementById('bulky-icon-container');
+    
+    if (bulkyContainer) {
+        if (bulkyType === "S") {
+            bulkyContainer.classList.remove('bulky-icon-hidden');
+        } else {
+            bulkyContainer.classList.add('bulky-icon-hidden');
+        }
+    }
+    const watermarkToggle = document.querySelector('input[name="watermark-toggle"]:checked')?.value || "on";
+    const watermarkElement = document.querySelector('.origin-tag');
 
-    document.getElementById('out-header-free').innerText = headerText || placeholderRemetente;
-    document.getElementById('out-recipient-free').innerText = recipientText || placeholderDestinatario;
-    document.getElementById('out-ssp').innerText = ssp || "SSP00";
-    document.getElementById('out-fsp').innerText = fsp || "FSP00";
+    if (watermarkElement) {
+        watermarkElement.style.display = (watermarkToggle === "off") ? "none" : "block";
+    }
+
+    document.getElementById('out-header-free').innerText = headerText;
+    document.getElementById('out-recipient-free').innerText = recipientText;
+    document.getElementById('out-ssp').innerText = ssp || "SSP20";
+    document.getElementById('out-fsp').innerText = fsp || "BRSP00";
     document.getElementById('out-address-type').innerText = addressType;
 
-    const valFSP = fsp || "FSP00";
-    const valSSP = ssp || "SSP00";
-    const valCluster = clusterNum || "00";
+    const valFSP = fsp || "BRSP00";
+    const valSSP = ssp || "SSP20";
+    const valCluster = clusterNum || "--";
     document.getElementById('out-cluster-combined').innerHTML = 
         `${valFSP} > ${valSSP} > <span class="cluster-number-bold">${valCluster}</span>`;
 
@@ -113,7 +138,7 @@ function updateLabel() {
             qrcode.makeCode(id); 
         }
     } else {
-        JsBarcode("#barcode", "40000000001", {
+        JsBarcode("#barcode", "41234567890", {
             format: "CODE128", 
             lineColor: "#ccc", 
             width: 2.2, 
@@ -122,12 +147,12 @@ function updateLabel() {
             margin: 0
         });
 
-        textManual.innerHTML = `400000<span class="id-last-five-highlight">00001</span>`;
+        textManual.innerHTML = `412345<span class="id-last-five-highlight">67810</span>`;
         textManual.style.color = "#ccc";
 
         if (qrcode) { 
             qrcode.clear(); 
-            qrcode.makeCode("40000000001"); 
+            qrcode.makeCode("41234567890"); 
         }
     }
 }
