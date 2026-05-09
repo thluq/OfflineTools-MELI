@@ -22,22 +22,22 @@ function atualizarTelaStatus(tipo, id = "") {
 
     if (tipo === 'correto') {
         screen.classList.add('status-ok');
-        icon.innerHTML = '<img src="../icons/audit-package-icon.svg" style="filter: brightness(0) invert(1);">';
+        icon.innerHTML = '<img src="../icons/icon-package.svg" style="filter: brightness(0) invert(1);">';
         title.innerText = "Correto";
         msg.innerText = id;
     } else if (tipo === 'amais') {
         screen.classList.add('status-warning');
-        icon.innerHTML = '<img src="../icons/audit-package-icon.svg" style="filter: brightness(0) invert(1);">';
+        icon.innerHTML = '<img src="../icons/icon-package.svg" style="filter: brightness(0) invert(1);">';
         title.innerText = id.includes("DUPLICADO") ? "Duplicado" : "A Mais";
         msg.innerText = id;
     } else if (tipo === 'invalido') {
         screen.classList.add('status-error');
-        icon.innerHTML = '<img src="../icons/audit-package-icon.svg" style="filter: brightness(0) invert(1);">';
+        icon.innerHTML = '<img src="../icons/icon-package.svg" style="filter: brightness(0) invert(1);">';
         title.innerText = "Inválido";
         msg.innerText = id;
     } else {
         screen.classList.add('status-screen-default');
-        icon.innerHTML = '<img src="../icons/audit-package-icon.svg">';
+        icon.innerHTML = '<img src="../icons/icon-package.svg">';
         title.innerText = "Escaneie o código";
         msg.innerText = "Aguardando bipagem...";
     }
@@ -152,8 +152,14 @@ function iniciarAuditoria() {
 // --- AUXILIARES ---
 function manterFoco() {
     const input = document.getElementById('scanInput');
+    const drawer = document.getElementById('drawer');
     input.focus();
-    input.onblur = () => setTimeout(() => input.focus(), 10);
+    // Só reativa o foco automaticamente se o drawer estiver fechado
+    input.onblur = () => {
+        if (drawer && !drawer.classList.contains('open')) {
+            setTimeout(() => input.focus(), 10);
+        }
+    };
     input.onkeydown = (e) => {
         if (e.key === 'Enter') {
             if (input.value.trim()) adicionarBip(input.value.trim());
@@ -185,10 +191,13 @@ function exportarCSV() {
         if (!bipsRealizados.has(id)) csv += `${id};Pendente\n`;
     });
 
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `auditoria_${new Date().getTime()}.csv`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
 }

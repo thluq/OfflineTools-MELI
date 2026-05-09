@@ -12,8 +12,8 @@ async function gerarEtiquetas() {
     container.innerHTML = '';
 
     for (let i = 0; i < qty; i++) {
-        const num = String(startNum + i).padStart(2, '0');
-        const gaylordId = `${facility}_${num}`;
+        const num = startNum + i;
+        const gaylordId = `G${num}_${facility}`;
 
         const label = document.createElement('div');
         label.className = 'label-page';
