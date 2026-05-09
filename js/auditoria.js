@@ -5,8 +5,13 @@ let bipsExtras = [];
 // --- CONTROLE DA INTERFACE ---
 function toggleDrawer() {
     const drawer = document.getElementById('drawer');
+    const input = document.getElementById('scanInput');
     if (drawer) {
         drawer.classList.toggle('open');
+        // Ao fechar o drawer, devolve o foco ao input de scan
+        if (!drawer.classList.contains('open') && input) {
+            setTimeout(() => input.focus(), 50);
+        }
     }
 }
 
