@@ -1,8 +1,7 @@
-let basePrevista = []; 
+let basePrevista = [];
 let bipsRealizados = new Set();
-let bipsExtras = []; 
+let bipsExtras = [];
 
-// --- CONTROLE DA INTERFACE ---
 function toggleDrawer() {
     const drawer = document.getElementById('drawer');
     const input = document.getElementById('scanInput');
@@ -57,7 +56,6 @@ function atualizarTelaStatus(tipo, id = "") {
     }
 }
 
-// --- LÓGICA DE AUDITORIA ---
 function adicionarBip(idSujo) {
     const idLimpoMatch = idSujo.match(/4\d{10}/);
     let idFinal = idSujo;
@@ -104,7 +102,6 @@ function renderizarListaCompleta() {
     if (!container) return;
     container.innerHTML = '';
 
-    // ERROS E EXTRAS (Topo)
     bipsExtras.forEach(e => {
         container.innerHTML += `
             <div class="bip-item">
@@ -113,7 +110,6 @@ function renderizarListaCompleta() {
             </div>`;
     });
 
-    //  CORRETOS (Meio)
     const concluidos = Array.from(bipsRealizados).filter(id => basePrevista.includes(id)).reverse();
     concluidos.forEach(id => {
         container.innerHTML += `
@@ -123,7 +119,6 @@ function renderizarListaCompleta() {
             </div>`;
     });
 
-    //  PENDENTES (Fundo)
     const pendentes = basePrevista.filter(id => !bipsRealizados.has(id));
     pendentes.forEach(id => {
         container.innerHTML += `
@@ -154,12 +149,11 @@ function iniciarAuditoria() {
     manterFoco();
 }
 
-// --- AUXILIARES ---
 function manterFoco() {
     const input = document.getElementById('scanInput');
     const drawer = document.getElementById('drawer');
     input.focus();
-    // Só reativa o foco automaticamente se o drawer estiver fechado
+    // Reativa o foco apenas se o drawer estiver fechado
     input.onblur = () => {
         if (drawer && !drawer.classList.contains('open')) {
             setTimeout(() => input.focus(), 10);

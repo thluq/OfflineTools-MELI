@@ -1,27 +1,16 @@
-// =============================================
-// Concatenar IDs — Lógica principal
-// Mesma regex do script de auditoria: /4\d{10}/g
-// =============================================
-
-/**
- * Extrai IDs válidos (começam com 4, 11 dígitos) do texto,
- * remove duplicatas e retorna array limpo.
- */
+// Mesma regex do script de auditoria: IDs com 11 dígitos começando com 4
 function extrairIDs(texto) {
     const matches = texto.match(/4\d{10}/g);
     if (!matches) return [];
     return [...new Set(matches)];
 }
 
-/**
- * Processa o texto, extrai IDs e exibe o resultado
- */
 function concatenarIDs() {
     const rawText = document.getElementById('base-ids').value;
     const ids = extrairIDs(rawText);
 
     if (ids.length === 0) {
-        mostrarToast('⚠️ Nenhum ID válido encontrado.');
+        mostrarToast('Nenhum ID válido encontrado.');
         return;
     }
 
@@ -32,7 +21,7 @@ function concatenarIDs() {
     const resultado = ids.join(separador);
 
     document.getElementById('stat-total').textContent = ids.length;
-    
+
     const dupBadge = document.getElementById('stat-dup');
     if (duplicatasRemovidas > 0) {
         dupBadge.textContent = duplicatasRemovidas + ' removida' + (duplicatasRemovidas > 1 ? 's' : '');
@@ -49,12 +38,9 @@ function concatenarIDs() {
     document.getElementById('result-section').classList.remove('hidden');
     document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-    mostrarToast(`✅ ${ids.length} IDs extraídos com sucesso!`);
+    mostrarToast(`${ids.length} IDs extraídos com sucesso!`);
 }
 
-/**
- * Formata os IDs com syntax highlighting estilo SQL
- */
 function formatarParaExibicao(ids, separador) {
     if (separador === ',') {
         const idsFormatados = ids.map(id => `<span class="sql-id">${id}</span>`).join('<span class="sql-paren">, </span>');
@@ -63,9 +49,6 @@ function formatarParaExibicao(ids, separador) {
     return ids.map(id => `<span class="sql-id">${id}</span>`).join(`<span class="sql-paren">${separador}</span>`);
 }
 
-/**
- * Copia resultado para a área de transferência
- */
 function copiarResultado() {
     const resultBox = document.getElementById('result-output');
     const raw = resultBox.dataset.rawResult;
@@ -77,7 +60,7 @@ function copiarResultado() {
         btn.innerHTML = '✓ Copiado!';
         btn.classList.add('copied');
         setTimeout(() => { btn.innerHTML = textoOriginal; btn.classList.remove('copied'); }, 2000);
-        mostrarToast('📋 Copiado para a área de transferência!');
+        mostrarToast('Copiado para a área de transferência!');
     }).catch(() => {
         const textarea = document.createElement('textarea');
         textarea.value = raw;
@@ -85,13 +68,10 @@ function copiarResultado() {
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
-        mostrarToast('📋 Copiado!');
+        mostrarToast('Copiado!');
     });
 }
 
-/**
- * Baixa o resultado como arquivo .txt
- */
 function baixarResultado() {
     const resultBox = document.getElementById('result-output');
     const raw = resultBox.dataset.rawResult;
@@ -106,9 +86,6 @@ function baixarResultado() {
     window.URL.revokeObjectURL(url);
 }
 
-/**
- * Atualiza resultado quando muda o separador
- */
 function atualizarSeparador() {
     const resultBox = document.getElementById('result-output');
     const raw = resultBox.dataset.rawResult;
@@ -117,14 +94,11 @@ function atualizarSeparador() {
     const rawText = document.getElementById('base-ids').value;
     const ids = extrairIDs(rawText);
     const separador = document.getElementById('separador').value;
-    
+
     resultBox.dataset.rawResult = ids.join(separador);
     resultBox.innerHTML = formatarParaExibicao(ids, separador);
 }
 
-/**
- * Exibe toast de feedback
- */
 function mostrarToast(mensagem) {
     const existente = document.querySelector('.toast');
     if (existente) existente.remove();

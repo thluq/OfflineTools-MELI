@@ -4,12 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const qrElement = document.getElementById("qrcode");
     if (qrElement) {
         qrcode = new QRCode(qrElement, {
-            width: 70, 
-            height: 70, 
+            width: 70,
+            height: 70,
             correctLevel: QRCode.CorrectLevel.H
         });
     }
-    
     updateLabel();
 });
 
@@ -30,50 +29,66 @@ window.onclick = function(event) {
     }
 }
 
-// --- Hash de senha (djb2) para não expor em texto claro ---
+// Hash djb2 — evita expor senhas em texto claro
 function hashSenha(str) {
     let hash = 5381;
     for (let i = 0; i < str.length; i++) {
         hash = ((hash << 5) + hash) + str.charCodeAt(i);
-        hash = hash & hash; // Convert to 32bit integer
+        hash = hash & hash;
     }
     return hash;
 }
 
-// Hashes válidos (senhas de acesso dev)
 const SENHAS_VALIDAS = [-537839990, 1281559840];
 
 function promptForDeveloperMode() {
     const tentativa = prompt("Digite a senha de acesso para habilitar o Modo Desenvolvedor:");
-    
+
     if (tentativa && SENHAS_VALIDAS.includes(hashSenha(tentativa))) {
         const areaBloqueada = document.getElementById('locked-fields');
-        
         areaBloqueada.style.display = "block";
         areaBloqueada.style.pointerEvents = "auto";
-        
         setTimeout(() => {
             areaBloqueada.style.opacity = "1";
             areaBloqueada.style.transition = "opacity 0.3s";
         }, 10);
-        
         alert("Modo Desenvolvedor habilitado! Campos liberados.");
     } else if (tentativa !== null) {
         alert("Senha incorreta. Acesso negado.");
     }
 }
 
-// --- Package type toggle (mutually exclusive checkboxes) ---
+// Ícone de envio — checkboxes mutuamente exclusivos e opcionais
+function handleRouteIcon(selected) {
+    const routeN = document.getElementById('route-n');
+    const routeS = document.getElementById('route-s');
+    const routeMeliair = document.getElementById('route-meliair');
+
+    if (selected === 'N' && routeN.checked) {
+        routeS.checked = false;
+        routeMeliair.checked = false;
+    } else if (selected === 'S' && routeS.checked) {
+        routeN.checked = false;
+        routeMeliair.checked = false;
+    } else if (selected === 'meliair' && routeMeliair.checked) {
+        routeN.checked = false;
+        routeS.checked = false;
+    }
+
+    updateLabel();
+}
+
+// Tipo de pacote — checkboxes mutuamente exclusivos e opcionais
 function handlePackageType(selected) {
     const cheapest = document.getElementById('pkg-cheapest');
     const bulky = document.getElementById('pkg-bulky');
-    
+
     if (selected === 'cheapest' && cheapest.checked) {
         bulky.checked = false;
     } else if (selected === 'bulky' && bulky.checked) {
         cheapest.checked = false;
     }
-    
+
     updateLabel();
 }
 
@@ -92,30 +107,41 @@ function updateLabel() {
     const fsp = inFSP ? inFSP.value.trim() : "";
     const id = inID ? inID.value.trim() : "";
     const clusterNum = inCluster ? inCluster.value.trim() : "";
-    const promiseDateValue = inDate ? inDate.value : ""; 
-    
+    const promiseDateValue = inDate ? inDate.value : "";
+
     const addressType = document.querySelector('input[name="address-type"]:checked')?.value || "R";
-    
-    // --- Route icon ---
-    const routeIcon = document.querySelector('input[name="route-icon"]:checked')?.value || "N";
+
+    const routeN = document.getElementById('route-n')?.checked;
+    const routeS = document.getElementById('route-s')?.checked;
+    const routeMeliair = document.getElementById('route-meliair')?.checked;
     const routeCircle = document.getElementById('out-route-icon');
-    
+
     if (routeCircle) {
-        if (routeIcon === 'meliair') {
+        if (routeMeliair) {
             routeCircle.innerHTML = '<img src="../icons/meliair.png" alt="MeliAir" style="width: 100%; height: 100%; object-fit: contain;">';
             routeCircle.classList.add('route-circle-img');
-        } else {
-            routeCircle.textContent = routeIcon;
+            routeCircle.style.display = '';
+        } else if (routeN) {
+            routeCircle.textContent = 'N';
             routeCircle.classList.remove('route-circle-img');
+            routeCircle.style.display = '';
+        } else if (routeS) {
+            routeCircle.textContent = 'S';
+            routeCircle.classList.remove('route-circle-img');
+            routeCircle.style.display = '';
+        } else {
+            // Nenhum ícone selecionado — oculta o círculo
+            routeCircle.textContent = '';
+            routeCircle.classList.remove('route-circle-img');
+            routeCircle.style.display = 'none';
         }
     }
-    
-    // --- Package type (cheapest/bulky) ---
+
     const isCheapest = document.getElementById('pkg-cheapest')?.checked || false;
     const isBulky = document.getElementById('pkg-bulky')?.checked || false;
     const pkgContainer = document.getElementById('package-icon-container');
     const pkgImg = document.getElementById('package-icon-img');
-    
+
     if (pkgContainer && pkgImg) {
         if (isCheapest) {
             pkgContainer.classList.remove('package-icon-hidden');
@@ -132,7 +158,6 @@ function updateLabel() {
 
     const watermarkToggle = document.querySelector('input[name="watermark-toggle"]:checked')?.value || "on";
     const watermarkElement = document.querySelector('.origin-tag');
-
     if (watermarkElement) {
         watermarkElement.style.display = (watermarkToggle === "off") ? "none" : "block";
     }
@@ -146,7 +171,7 @@ function updateLabel() {
     const valFSP = fsp || "BRSP00";
     const valSSP = ssp || "SSP20";
     const valCluster = clusterNum || "--";
-    document.getElementById('out-cluster-combined').innerHTML = 
+    document.getElementById('out-cluster-combined').innerHTML =
         `${valFSP} > ${valSSP} > <span class="cluster-number-bold">${valCluster}</span>`;
 
     const outDateElement = document.getElementById('out-date');
@@ -154,26 +179,24 @@ function updateLabel() {
 
     if (!promiseDateValue) {
         const hoje = new Date();
-        const diaSemana = diasSemana[hoje.getDay()];
-        const dataFormatada = hoje.toLocaleDateString('pt-BR'); 
-        outDateElement.innerText = `${diaSemana} ${dataFormatada}`;
+        outDateElement.innerText = `${diasSemana[hoje.getDay()]} ${hoje.toLocaleDateString('pt-BR')}`;
     } else {
         const dateParts = promiseDateValue.split('-');
         const dateObj = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-        const diaSemana = diasSemana[dateObj.getDay()];
-        const dataFormatada = dateObj.toLocaleDateString('pt-BR');
-        outDateElement.innerText = `${diaSemana} ${dataFormatada}`;
+        outDateElement.innerText = `${diasSemana[dateObj.getDay()]} ${dateObj.toLocaleDateString('pt-BR')}`;
     }
 
     const textManual = document.getElementById('barcode-text-manual');
 
     if (id) {
+        const barcodeEl = document.getElementById('barcode');
+        if (barcodeEl) { barcodeEl.style.display = ''; barcodeEl.style.opacity = '1'; }
         JsBarcode("#barcode", id, {
-            format: "CODE128", 
-            lineColor: "#000", 
-            width: 2.2, 
-            height: 85, 
-            displayValue: false, 
+            format: "CODE128",
+            lineColor: "#000",
+            width: 2.2,
+            height: 85,
+            displayValue: false,
             margin: 0
         });
 
@@ -182,26 +205,23 @@ function updateLabel() {
         textManual.innerHTML = `${startPart}<span class="id-last-five-highlight">${lastFive}</span>`;
         textManual.style.color = "#000";
 
-        if (qrcode) { 
-            qrcode.clear(); 
-            qrcode.makeCode(id); 
-        }
+        if (qrcode) { qrcode.clear(); qrcode.makeCode(id); }
     } else {
+        // Sem ID: barcode placeholder com baixa opacidade
+        const barcodeEl = document.getElementById('barcode');
+        if (barcodeEl) { barcodeEl.style.display = ''; barcodeEl.style.opacity = '0.25'; }
         JsBarcode("#barcode", "41234567890", {
-            format: "CODE128", 
-            lineColor: "#ccc", 
-            width: 2.2, 
-            height: 85, 
-            displayValue: false, 
+            format: "CODE128",
+            lineColor: "#000",
+            width: 2.2,
+            height: 85,
+            displayValue: false,
             margin: 0
         });
 
-        textManual.innerHTML = `412345<span class="id-last-five-highlight">67810</span>`;
+        textManual.innerHTML = `412345<span class="id-last-five-highlight">67890</span>`;
         textManual.style.color = "#ccc";
 
-        if (qrcode) { 
-            qrcode.clear(); 
-            qrcode.makeCode("41234567890"); 
-        }
+        if (qrcode) { qrcode.clear(); qrcode.makeCode("41234567890"); }
     }
 }

@@ -58,16 +58,16 @@
             </div>
 
             <div class="input-group">
-                <label>Ícone Envio</label>
+                <label>Icone Envio</label>
                 <div class="address-type-selector route-icon-selector">
-                    <input type="radio" id="route-n" name="route-icon" value="N" checked onchange="updateLabel()">
+                    <input type="checkbox" id="route-n" name="route-icon" value="N" onchange="handleRouteIcon('N')">
                     <label for="route-n" class="selector-btn route-selected">N</label>
 
-                    <input type="radio" id="route-s" name="route-icon" value="S" onchange="updateLabel()">
+                    <input type="checkbox" id="route-s" name="route-icon" value="S" onchange="handleRouteIcon('S')">
                     <label for="route-s" class="selector-btn route-selected">S</label>
 
-                    <input type="radio" id="route-meliair" name="route-icon" value="meliair" onchange="updateLabel()">
-                    <label for="route-meliair" class="selector-btn route-selected">✈ MeliAir</label>
+                    <input type="checkbox" id="route-meliair" name="route-icon" value="meliair" onchange="handleRouteIcon('meliair')">
+                    <label for="route-meliair" class="selector-btn route-selected">MeliAir</label>
                 </div>
             </div>
 
@@ -76,23 +76,23 @@
                 <div class="address-type-selector package-type-selector">
                     <input type="checkbox" id="pkg-cheapest" name="pkg-type" value="cheapest"
                         onchange="handlePackageType('cheapest')">
-                    <label for="pkg-cheapest" class="selector-btn pkg-btn">⏳ Cheapest</label>
+                    <label for="pkg-cheapest" class="selector-btn pkg-btn">Cheapest</label>
 
                     <input type="checkbox" id="pkg-bulky" name="pkg-type" value="bulky"
                         onchange="handlePackageType('bulky')">
-                    <label for="pkg-bulky" class="selector-btn pkg-btn">📦 Bulky</label>
+                    <label for="pkg-bulky" class="selector-btn pkg-btn">Bulky</label>
                 </div>
             </div>
 
             <div id="locked-fields" class="locked-state">
                 <div class="input-group">
-                    <label>1. Informações Seller</label>
+                    <label>Informações Seller</label>
                     <textarea id="in-header-free" rows="4" placeholder="Insira os dados do Seller..."
                         oninput="updateLabel()"></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label>7. Informações Buyer</label>
+                    <label>Informações Buyer</label>
                     <textarea id="in-recipient-free" rows="4" placeholder="Insira os dados do Buyer..."
                         oninput="updateLabel()"></textarea>
                 </div>
@@ -111,27 +111,27 @@
             </div>
 
             <div class="input-group">
-                <label>2. Facility Destino</label>
+                <label>Facility Destino</label>
                 <input type="text" id="in-ssp" placeholder="Ex: SSP20" oninput="updateLabel()">
             </div>
 
             <div class="input-group">
-                <label>3. Origem</label>
+                <label>Origem</label>
                 <input type="text" id="in-fsp" placeholder="Ex: FSP04" oninput="updateLabel()">
             </div>
 
             <div class="input-group">
-                <label style="color: #3483fa; font-weight: bold;">4. ID do Pacote</label>
+                <label style="color: #3483fa; font-weight: bold;">ID do Pacote</label>
                 <input type="text" id="in-id" placeholder="Ex: 41234567890" oninput="updateLabel()">
             </div>
 
             <div class="input-group">
-                <label>5. Número do Cluster</label>
+                <label>Número do Cluster</label>
                 <input type="text" id="in-cluster" placeholder="Ex: 45" oninput="updateLabel()">
             </div>
 
             <div class="input-group">
-                <label>6. Promessa</label>
+                <label>Promessa</label>
                 <input type="date" id="in-date" onchange="updateLabel()">
             </div>
 
