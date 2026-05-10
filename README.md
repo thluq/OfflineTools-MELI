@@ -24,7 +24,7 @@ Module for local generation of package labels, designed for situations where rep
 - Barcode and QR Code generation using lightweight libraries (JsBarcode and QRCode.js).
 - Developer mode for advanced fields(password: 3831213 or cajadummy).
 
-### 03. Label Without ID (Etiqueta sem ID)
+### 03. Label for Packages Without ID (Etiqueta sem ID)
 
 Generates labels for packages that have no identification, using a sequential numbering system per facility.
 
