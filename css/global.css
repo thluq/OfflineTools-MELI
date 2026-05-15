@@ -1,6 +1,6 @@
 /* ============================================
-   GLOBAL STYLES — OfflineTools MELI
-   Estilos compartilhados entre todas as páginas
+   GLOBAL STYLES — OfflineTools MELI (Extension)
+   Adaptado para popup do Chrome (~780x580px)
    ============================================ */
 
 /* --- CSS Custom Properties --- */
@@ -27,20 +27,31 @@
     --shadow-md: 0 2px 15px rgba(0,0,0,0.1);
     --shadow-lg: 0 4px 15px rgba(0,0,0,0.15);
 
-    --header-height: 54px;
+    /* Popup tem header menor pra ganhar espaço vertical */
+    --header-height: 44px;
     --font-primary: "Proxima Nova", -apple-system, sans-serif;
 
     --radius-sm: 6px;
     --radius-md: 8px;
+
+    /* Dimensões fixas do popup */
+    --popup-width: 780px;
+    --popup-height: 580px;
 }
 
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; }
 
+html {
+    /* Força o tamanho do popup — o Chrome respeita isso */
+    width: var(--popup-width);
+    min-width: var(--popup-width);
+}
+
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -48,13 +59,19 @@ body {
     font-family: var(--font-primary);
     display: flex;
     flex-direction: column;
+    width: var(--popup-width);
+    min-height: var(--popup-height);
+    /* Sem height: 100% — popup define a altura pelo conteúdo */
 }
 
 /* --- Utilitários --- */
 .hidden { display: none !important; }
 .content-wrapper { flex: 1 0 auto; }
 
-/* --- Header (Kraken Nav) --- */
+/* --- Header ---
+   Na extensão: NÃO é fixed (não faz sentido em popup),
+   e é um pouco menor pra economizar espaço vertical.
+   -------------------------------------------------------- */
 .kraken-nav-header {
     background-color: var(--meli-yellow);
     height: var(--header-height);
@@ -62,8 +79,7 @@ body {
     align-items: center;
     padding: 0 20px;
     box-shadow: var(--shadow-sm);
-    position: fixed;
-    top: 0;
+    /* position: fixed removido — era pra versão web */
     width: 100%;
     z-index: 1001;
 }
@@ -77,13 +93,18 @@ body {
 }
 
 .logo-container { margin: 0; }
-.logo-img { height: 35px; display: block; }
 
-/* --- Footer --- */
+/* Logo um pouco menor que na web */
+.logo-img { height: 28px; display: block; }
+
+/* --- Footer ---
+   Compacto na extensão: sem o disclaimer longo pra não
+   ocupar espaço precioso do popup.
+   -------------------------------------------------------- */
 .main-footer {
     flex-shrink: 0;
     width: 100%;
-    padding: 30px 20px;
+    padding: 10px 20px;
     background-color: var(--bg-white);
     border-top: 1px solid #e6e6e6;
     text-align: center;
@@ -93,18 +114,18 @@ body {
     max-width: 800px;
     margin: 0 auto;
     color: var(--text-secondary);
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .footer-legal hr {
     border: 0;
     border-top: 1px solid var(--border-light);
-    margin: 15px auto;
+    margin: 8px auto;
     width: 50px;
 }
 
 .disclaimer {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-muted);
     text-align: justify;
     line-height: 1.4;
@@ -114,12 +135,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 4px;
 }
 
 .dev-social-links a {
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
     transition: transform 0.2s;
 }
@@ -132,14 +153,14 @@ body {
 /* --- Botão Primário (base) --- */
 .btn-primary {
     width: 100%;
-    padding: 16px;
+    padding: 12px;
     background: var(--meli-blue);
     color: white;
     border: none;
     border-radius: var(--radius-sm);
     font-weight: 600;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     transition: background 0.2s;
 }
 
