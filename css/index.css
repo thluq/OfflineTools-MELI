@@ -1,16 +1,19 @@
 /* ============================================
-   INDEX — Estilos do menu principal
+   INDEX — Estilos do menu principal (Extension)
+   Adaptado para popup ~780x580px
    ============================================ */
 
-.kraken-main { margin-top: 100px; }
+/* margin-top = altura do header (não é mais fixed, mas mantém espaçamento visual) */
+.kraken-main { margin-top: 16px; }
 
 .menu-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 32px;
-    padding: 20px;
-    max-width: 1200px;
+    /* gap reduzido pra caber tudo sem scroll */
+    gap: 20px;
+    padding: 16px 20px;
+    max-width: 780px;
     margin: 0 auto;
 }
 
@@ -20,21 +23,23 @@
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s;
-    width: 180px;
+    /* Largura menor que na web pra caber 5 cards em ~2 linhas */
+    width: 130px;
 }
 
-.menu-card:hover { transform: translateY(-5px); }
+.menu-card:hover { transform: translateY(-4px); }
 
 .card-circle {
     background-color: #b9b9b937;
-    width: 100px;
-    height: 100px;
+    /* Círculo menor */
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     overflow: hidden;
 }
 
@@ -46,7 +51,8 @@
 
 .card-name {
     color: var(--text-primary);
-    font-size: 15px;
+    /* Fonte menor */
+    font-size: 13px;
     text-align: center;
     font-weight: 600;
     margin: 0;
