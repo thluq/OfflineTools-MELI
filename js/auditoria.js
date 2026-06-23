@@ -1,6 +1,7 @@
 let basePrevista = [];
 let bipsRealizados = new Set();
 let bipsExtras = [];
+let timeoutStatusTela;
 
 function toggleDrawer() {
     const drawer = document.getElementById('drawer');
@@ -46,8 +47,12 @@ function atualizarTelaStatus(tipo, id = "") {
         msg.innerText = "Aguardando bipagem...";
     }
 
+    if (timeoutStatusTela) {
+        clearTimeout(timeoutStatusTela);
+    }
+
     if (tipo !== 'default') {
-        setTimeout(() => {
+        timeoutStatusTela = setTimeout(() => {
             const drawer = document.getElementById('drawer');
             if (drawer && !drawer.classList.contains('open')) {
                 atualizarTelaStatus('default');
