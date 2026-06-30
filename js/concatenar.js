@@ -1,4 +1,4 @@
-// Mesma regex do script de auditoria: IDs com 11 dígitos começando com 4
+// regex
 function extrairIDs(texto) {
     const matches = texto.match(/4\d{10}/g);
     if (!matches) return [];
@@ -18,7 +18,7 @@ function concatenarIDs() {
     const duplicatasRemovidas = allMatches.length - ids.length;
 
     const separador = document.getElementById('separador').value;
-    const resultado = ids.join(separador);
+    const resultado = montarResultado(ids, separador);
 
     document.getElementById('stat-total').textContent = ids.length;
 
@@ -41,7 +41,18 @@ function concatenarIDs() {
     mostrarToast(`${ids.length} IDs extraídos com sucesso!`);
 }
 
+function montarResultado(ids, separador) {
+    if (separador === 'QUOTED_COMMA') {
+        return ids.map(id => `'${id}'`).join(',');
+    }
+    return ids.join(separador);
+}
+
 function formatarParaExibicao(ids, separador) {
+    if (separador === 'QUOTED_COMMA') {
+        const idsFormatados = ids.map(id => `<span class="sql-id">'${id}'</span>`).join('<span class="sql-paren">,</span>');
+        return idsFormatados;
+    }
     if (separador === ',') {
         const idsFormatados = ids.map(id => `<span class="sql-id">${id}</span>`).join('<span class="sql-paren">, </span>');
         return `<span class="sql-keyword">IN</span> <span class="sql-paren">(</span>${idsFormatados}<span class="sql-paren">)</span>`;
@@ -95,7 +106,7 @@ function atualizarSeparador() {
     const ids = extrairIDs(rawText);
     const separador = document.getElementById('separador').value;
 
-    resultBox.dataset.rawResult = ids.join(separador);
+    resultBox.dataset.rawResult = montarResultado(ids, separador);
     resultBox.innerHTML = formatarParaExibicao(ids, separador);
 }
 
