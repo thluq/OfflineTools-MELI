@@ -37,10 +37,10 @@ body {
 
 .input-panel .footer-legal .dev-social-links {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px 10px;
     margin-bottom: 10px;
 }
 
@@ -59,7 +59,9 @@ body {
     font-weight: 600;
     font-size: 11px;
     color: #333;
+    text-align: center;
     width: 100%;
+    word-break: break-word;
 }
 
 .input-panel .footer-legal hr {
