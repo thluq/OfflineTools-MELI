@@ -29,9 +29,44 @@ body {
 /* --- Disclaimer legal (dentro do input-panel, que já tem scroll) --- */
 .input-panel .footer-legal {
     margin-top: 30px;
-    text-align: left;
     padding-top: 20px;
     border-top: 1px solid #eee;
+    max-width: 100%;
+    text-align: center;
+}
+
+.input-panel .footer-legal .dev-social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-panel .footer-legal .dev-social-links a {
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.input-panel .footer-legal .dev-social-links a:hover {
+    transform: scale(1.2);
+}
+
+.input-panel .footer-legal .dev-social-links p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 11px;
+    color: #333;
+    width: 100%;
+}
+
+.input-panel .footer-legal hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 10px auto;
+    width: 40px;
 }
 
 .input-panel .footer-legal .disclaimer {
