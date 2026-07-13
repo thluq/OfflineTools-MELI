@@ -1,5 +1,5 @@
 /* ============================================
-   ETIQUETA MASTER — Estilos específicos
+   ETIQUETA MASTER
    ============================================ */
 
 html,
@@ -24,6 +24,21 @@ body {
     overflow-y: auto;
     height: 100%;
     z-index: 10;
+}
+
+/* --- Disclaimer legal (dentro do input-panel, que já tem scroll) --- */
+.input-panel .footer-legal {
+    margin-top: 30px;
+    text-align: left;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.input-panel .footer-legal .disclaimer {
+    font-size: 10px;
+    color: #999;
+    text-align: justify;
+    line-height: 1.4;
 }
 
 .label-view-area {
